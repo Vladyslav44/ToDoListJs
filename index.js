@@ -1,47 +1,43 @@
 //SELECTORS
-const todoInput = document.querySelector('.todo-input')  //підключаємо переменну до HTML елемента
+const todoInput = document.querySelector('.todo-input')
 const todoButton = document.querySelector('.todo-button')
 const todoList = document.querySelector('.todo-list')
 const todoClearButton = document.querySelector('.clear-button')
 
-
-
 //EVENT LISTENERS
-todoButton.addEventListener('click',addTodo)  // даэмо слушатель кнопкі , виконує логіку функції addTodo
+todoButton.addEventListener('click',addTodo)
 todoList.addEventListener('click', deleteCheck)
 todoClearButton.addEventListener('click', clearBtn)
 
-
-
 //FUNCTIONS
 function addTodo (event) {
-    //Prevent form from submitting / убираем стандартное поведение браузера
+    //Prevent form from submitting
     event.preventDefault();
     //To-do DIV
-    const todoDiv = document.createElement('div');  // створюємо div з класом
+    const todoDiv = document.createElement('div');
     todoDiv.classList.add('todo')
     //Create LI
-    const newTodo = document.createElement('li')  // створюємо li і звязуємо його з інпутом та обявляємо що він є дочерним елементом родительского newTodo
+    const newTodo = document.createElement('li')
     newTodo.innerHTML = todoInput.value
     newTodo.classList.add('todo-item')
     todoDiv.appendChild(newTodo)
     //Check complete button
-    const completedButton = document.createElement('button');  // стврорюємо кнопку
-    completedButton.innerHTML = 'complete'; // назва кнопки
-    completedButton.classList.add('complete-btn'); // даємо класс кнопкі
-    todoDiv.appendChild(completedButton); // кнопка є дочерним елементом родительського newTodo
+    const completedButton = document.createElement('button');
+    completedButton.innerHTML = 'complete';
+    completedButton.classList.add('complete-btn');
+    todoDiv.appendChild(completedButton);
     //Check trash button
     const trashButton = document.createElement('button');
     trashButton.innerHTML = 'delete';
     trashButton.classList.add('trash-btn');
     todoDiv.appendChild(trashButton);
     //Append to list
-    todoList.appendChild(todoDiv);  // вставляємо це все в найголовніший Html тег
+    todoList.appendChild(todoDiv);
     //Clear To-do input value
-    todoInput.value = '';   // чистимо інпут після нажатія
+    todoInput.value = '';
 }
 
-function deleteCheck(e) {       // логіка кнопок які ми получаємо в наших тудушках
+function deleteCheck(e) {
     const item = e.target;
     //Delete to-do
     if(item.classList[0] === 'trash-btn') {
